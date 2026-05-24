@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="YES OR NOT? — Clothing Catalog">
+  <title>YES OR NOT? — Catalog</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <div class="header__left">
+        <!-- Hamburger menu button (mobile only) -->
+        <button class="header__menu-btn" id="mobile-menu-btn" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <a href="#" class="header__logo" id="logo-link" data-page="home" data-i18n="logo_placeholder">ЛОГО</a>
+      </div>
+      
+      <!-- Desktop/Mobile Navigation Container -->
+      <nav class="header__nav" id="header-nav">
+        <button class="header__nav-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
+        <!-- Language switcher -->
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-switcher__btn active" data-lang="uk">UA</button>
+          <span class="lang-switcher__sep">|</span>
+          <button class="lang-switcher__btn" data-lang="en">EN</button>
+        </div>
+        <a href="#" class="header__link" id="nav-home" data-page="home" data-i18n="nav_home">Home</a>
+        <a href="#" class="header__link" id="nav-catalog" data-page="catalog" data-i18n="nav_catalog">Catalog</a>
+      </nav>
+      
+      <!-- Cart is always visible on the right -->
+      <div class="header__right">
+        <button class="header__cart-btn" id="cart-toggle" aria-label="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="header__cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== CART SIDEBAR ==================== -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="menu-overlay" id="menu-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-sidebar__header">
+      <h2 class="cart-sidebar__title" data-i18n="cart_title">Cart <span class="cart-sidebar__badge" id="cart-badge">0</span></h2>
+      <button class="cart-sidebar__close" id="cart-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="cart-sidebar__items" id="cart-items"></div>
+    <div class="cart-sidebar__footer" id="cart-footer" style="display:none;">
+      <div class="cart-sidebar__total">
+        <span data-i18n="cart_total">Разом:</span>
+        <span id="cart-total">₴0</span>
+      </div>
+      <button class="cart-sidebar__checkout-btn" id="checkout-btn" data-i18n="cart_checkout">Оплатити</button>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main" id="main-content">
+
+    <!-- ===== HOME PAGE ===== -->
+    <div class="page page--home active" id="page-home">
+
+      <!-- Welcome Section -->
+      <section class="welcome" id="welcome-section">
+        <div class="welcome__content">
+          <p class="welcome__label">EST. 2024</p>
+          <h1 class="welcome__title">YES OR NOT?</h1>
+          <p class="welcome__subtitle" data-i18n="welcome_sub">Сучасний вуличний одяг для тих, хто створює стиль</p>
+          <button class="welcome__btn" id="welcome-catalog-btn" data-page="catalog" data-i18n="welcome_btn">Перейти до каталогу</button>
+        </div>
+      </section>
+
+      <!-- New Products Section -->
+      <section class="new-products" id="new-products-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="new_title">Новинки</h2>
+          <div class="new-products__grid" id="new-products-grid"></div>
+        </div>
+      </section>
+
+      <!-- About Brand Section -->
+      <section class="about-brand" id="about-brand-section">
+        <div class="container">
+          <div class="about-brand__inner">
+            <h2 class="section-title" data-i18n="about_title">Про бренд</h2>
+            <p class="about-brand__text" data-i18n="about_text">Про бренд</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact" id="contact-section">
+        <div class="container">
+          <h2 class="section-title contact__section-title" data-i18n="contact_title">Зв'язатися з нами</h2>
+          <div class="contact__inner">
+            <form class="contact__form" id="contact-form">
+              <input type="text" class="contact__input" id="contact-question" data-i18n-ph="contact_q_ph" placeholder="Ваше питання..." autocomplete="off">
+              <input type="email" class="contact__input" id="contact-email" data-i18n-ph="contact_e_ph" placeholder="Ваш email..." autocomplete="off">
+              <button type="submit" class="contact__btn" data-i18n="contact_btn">Надіслати</button>
+            </form>
+            <div class="contact__info">
+              <p class="contact__email-label" data-i18n="contact_our_email">Наша пошта</p>
+              <a href="mailto:info@yesornot.com" class="contact__email-link">info@yesornot.com</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" id="footer-home">
+        <div class="container">
+          <div class="footer__inner">
+            <div class="footer__brand">YES OR NOT?</div>
+            <div class="footer__links">
+              <a href="#" data-page="home">Home</a>
+              <a href="#" data-page="catalog">Catalog</a>
+            </div>
+            <div class="footer__copy">&copy; 2024 YES OR NOT? All rights reserved.</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ===== CATALOG PAGE ===== -->
+    <div class="page page--catalog" id="page-catalog">
+      <section class="catalog" id="catalog-section">
+        <div class="container">
+          <div class="catalog__header">
+            <h1 class="catalog__title" data-i18n="catalog_title">Products</h1>
+            <span class="catalog__count" id="catalog-count">12 items</span>
+          </div>
+          <div class="catalog__grid" id="catalog-grid"></div>
+        </div>
+      </section>
+      <footer class="footer" id="footer-catalog">
+        <div class="container">
+          <div class="footer__inner">
+            <div class="footer__brand">YES OR NOT?</div>
+            <div class="footer__links">
+              <a href="#" data-page="home">Home</a>
+              <a href="#" data-page="catalog">Catalog</a>
+            </div>
+            <div class="footer__copy">&copy; 2024 YES OR NOT? All rights reserved.</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ===== PRODUCT PAGE ===== -->
+    <div class="page page--product" id="page-product">
+      <section class="product-detail" id="product-detail-section">
+        <div class="container">
+          <div class="product-detail__inner">
+            <div class="product-detail__gallery">
+              <div class="product-detail__image" id="product-detail-image"></div>
+              <div class="product-detail__nav">
+                <button class="product-detail__arrow" id="product-prev" aria-label="Previous">&#8592;</button>
+                <button class="product-detail__arrow" id="product-next" aria-label="Next">&#8594;</button>
+              </div>
+            </div>
+            <div class="product-detail__info">
+              <p class="product-detail__category" id="product-category">CATEGORY</p>
+              <h1 class="product-detail__name" id="product-name">Product Name</h1>
+              <p class="product-detail__price" id="product-price">₴0</p>
+              <div class="product-detail__meta">
+                <span class="product-detail__meta-label" data-i18n="product_color_label">COLOR</span>
+                <span class="product-detail__meta-value" id="product-color">black</span>
+              </div>
+              <hr class="product-detail__divider">
+              <!-- Size selector -->
+              <div class="product-detail__sizes">
+                <span class="product-detail__meta-label" data-i18n="size_label">РОЗМІР</span>
+                <div class="product-detail__size-options" id="size-options">
+                  <button class="size-btn" data-size="S">S</button>
+                  <button class="size-btn active" data-size="M">M</button>
+                  <button class="size-btn" data-size="L">L</button>
+                  <button class="size-btn" data-size="XL">XL</button>
+                </div>
+              </div>
+              <hr class="product-detail__divider">
+              <ul class="product-detail__features" id="product-features">
+                <li data-i18n="product_feature_quality">— Premium quality materials</li>
+                <li data-i18n="product_feature_fit">— Modern fit design</li>
+                <li data-i18n="product_feature_time">— Production time: 7-12 days</li>
+              </ul>
+              <button class="product-detail__add-btn" id="add-to-cart-btn" data-i18n="add_to_cart">ДОДАТИ ДО КОШИКА</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer" id="footer-product">
+        <div class="container">
+          <div class="footer__inner">
+            <div class="footer__brand">YES OR NOT?</div>
+            <div class="footer__links">
+              <a href="#" data-page="home">Home</a>
+              <a href="#" data-page="catalog">Catalog</a>
+            </div>
+            <div class="footer__copy">&copy; 2024 YES OR NOT? All rights reserved.</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ===== CHECKOUT PAGE ===== -->
+    <div class="page page--checkout" id="page-checkout">
+      <section class="checkout" id="checkout-section">
+        <div class="container">
+          <div class="checkout__inner">
+            <div class="checkout__form-side">
+              <h1 class="checkout__heading" data-i18n="checkout_heading">Ваші дані</h1>
+              <div class="checkout__field-group">
+                <h3 class="checkout__label" data-i18n="checkout_contact_info">Контактна інформація</h3>
+                <div class="checkout__row">
+                  <input type="text" class="checkout__input" id="checkout-lastname" data-i18n-ph="checkout_lastname_ph" placeholder="Прізвище">
+                  <input type="text" class="checkout__input" id="checkout-firstname" data-i18n-ph="checkout_firstname_ph" placeholder="Ім'я">
+                </div>
+                <div class="checkout__row">
+                  <input type="tel" class="checkout__input" id="checkout-phone" placeholder="+380 __ ___ __ __">
+                  <input type="email" class="checkout__input" id="checkout-email" data-i18n-ph="checkout_email_ph" placeholder="Електронна пошта">
+                </div>
+              </div>
+              <div class="checkout__field-group">
+                <h3 class="checkout__label" data-i18n="checkout_delivery">Спосіб доставки</h3>
+                <div class="checkout__radio-group">
+                  <label class="checkout__radio">
+                    <input type="radio" name="delivery" value="nova" checked> Нова Пошта
+                  </label>
+                  <label class="checkout__radio">
+                    <input type="radio" name="delivery" value="worldwide"> Worldwide Shipping
+                  </label>
+                </div>
+                <div class="checkout__row">
+                  <select class="checkout__select" id="checkout-city">
+                    <option value="" data-i18n="checkout_city_ph">Оберіть місто</option>
+                    <option>Київ</option>
+                    <option>Одеса</option>
+                    <option>Харків</option>
+                    <option>Дніпро</option>
+                    <option>Львів</option>
+                  </select>
+                  <select class="checkout__select" id="checkout-warehouse">
+                    <option value="" data-i18n="checkout_warehouse_ph">Оберіть відділення</option>
+                  </select>
+                </div>
+              </div>
+              <div class="checkout__field-group">
+                <h3 class="checkout__label" data-i18n="checkout_comment">Коментар до замовлення</h3>
+                <textarea class="checkout__textarea" id="checkout-comment" data-i18n-ph="checkout_comment_ph" placeholder="Запишіть ваш коментар тут..." rows="3"></textarea>
+              </div>
+            </div>
+            <div class="checkout__summary-side">
+              <h2 class="checkout__summary-title" data-i18n="checkout_order">Ваше замовлення</h2>
+              <div class="checkout__summary-items" id="checkout-items"></div>
+              <hr class="checkout__summary-divider">
+              <div class="checkout__summary-details">
+                <h3 class="checkout__label" data-i18n="checkout_details">Деталі замовлення</h3>
+                <div class="checkout__summary-row" id="checkout-summary-rows"></div>
+              </div>
+              <div class="checkout__promo-row">
+                <input type="text" class="checkout__input checkout__input--promo" id="checkout-promo" data-i18n-ph="checkout_promo_ph" placeholder="Промокод або подарункова картка">
+                <button class="checkout__promo-btn" data-i18n="checkout_apply">Застосувати</button>
+              </div>
+              <hr class="checkout__summary-divider">
+              <div class="checkout__summary-line">
+                <span data-i18n="checkout_subtotal">Підсумок</span>
+                <span id="checkout-subtotal">0 грн</span>
+              </div>
+              <div class="checkout__summary-line">
+                <span data-i18n="checkout_shipping">Доставка</span>
+                <span data-i18n="checkout_shipping_val">За тарифами перевізника</span>
+              </div>
+              <div class="checkout__summary-line checkout__summary-line--total">
+                <span data-i18n="checkout_total">Загальна вартість</span>
+                <span id="checkout-total-final">0 грн</span>
+              </div>
+              <button class="checkout__pay-btn" id="pay-btn" data-i18n="checkout_pay">Оплатити</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ==================== NOTIFICATIONS ==================== -->
+  <div class="notification-container" id="notification-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
